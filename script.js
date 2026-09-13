@@ -29,7 +29,7 @@ function resolve(path) {
     return path.reduce((node, seg) => node[seg], DIRECTORY)
 }
 
-inputLine.textContent = "user@machine:" + pwd(state)
+inputLine.textContent = "user@machine:" + pwd(state) + " $ "
 
 inputValue.addEventListener("keydown", (event) => {
     if (event.key === 'Enter') {
@@ -42,7 +42,7 @@ inputValue.addEventListener("keydown", (event) => {
             outputSpace.appendChild(p)
         }
         
-        inputLine.textContent = "user@machine:" + pwd(state) + "# "
+        inputLine.textContent = "user@machine:" + pwd(state) + " $ "
         inputValue.value = ""
         inputValue.focus()
     }
