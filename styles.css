@@ -1,0 +1,50 @@
+html {
+    background-color: rgb(24, 24, 46);
+    margin: 0;
+    padding: 0px;
+}
+
+body {
+    margin: 0;
+}
+
+p {
+    color: whitesmoke;
+    font-family: "JetBrains Mono", monospace;
+    margin: 4px 0;
+}
+
+.terminal {
+    background-color: rgb(24, 24, 46);
+    padding: 0px 30px 20px;
+    border: 0px solid black;
+    margin: 0 auto;
+}
+
+.output {
+    color: aliceblue;
+    font-family: "JetBrains Mono", monospace;
+    white-space: pre-wrap;
+    font-size: medium;
+}
+
+.input {
+    color: chartreuse;
+    font-family: "JetBrains Mono", monospace;
+    font-size: medium;
+}
+
+input {
+    background-color: rgb(24, 24, 46);
+    border: 0px solid black;
+    color: white;
+    caret-color: chartreuse;
+    caret-shape: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: medium;
+}
+
+input[type="text"]:focus {
+  border-color: black;
+  outline: none;
+}
