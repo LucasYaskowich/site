@@ -21,6 +21,8 @@ const DIRECTORY = {
 
 let state = {
     "curPath": ["~"],
+    "history": [],
+    "historyIndex": 0,
 }
 
 function resolve(path) {
@@ -44,10 +46,44 @@ inputValue.addEventListener("keydown", (event) => {
         inputValue.value = ""
         inputValue.focus()
     }
+
+    if (event.key === 'ArrowUp') {
+        if (state.historyIndex !== 0) {
+            state.historyIndex = state.historyIndex - 1
+            inputValue.value = state.history[state.historyIndex]
+            inputValue.focus()            
+        }
+    inputValue.setSelectionRange(inputValue.value.length, inputValue.value.length)
+    event.preventDefault()
+    }
+
+    if (event.key === 'ArrowDown') {
+        if (state.historyIndex !== (state.history.length)) {
+            state.historyIndex = state.historyIndex + 1
+            if (state.historyIndex === state.history.length) {
+                inputValue.value = ""
+            } else {
+                inputValue.value = state.history[state.historyIndex]
+            }
+            
+            inputValue.focus()
+
+        }
+    inputValue.setSelectionRange(inputValue.value.length, inputValue.value.length)
+    event.preventDefault()
+    }
+    
 });
 
 function handleEnter(commandText) {
+    if (commandText !== ""){
+    state.history.push(commandText)
+    }
+
     let parsed = commandText.split(" ")
+
+    state.historyIndex = state.history.length
+
     switch (parsed[0]) {
         case "help":
             return help();
