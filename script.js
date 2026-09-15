@@ -73,6 +73,30 @@ inputValue.addEventListener("keydown", (event) => {
     event.preventDefault()
     }
     
+    if (event.key === 'Tab') {
+        let completed = inputValue.value
+        let parsed = inputValue.value.split(" ")
+        let last = parsed[parsed.length - 1]
+
+        let value = ""
+        let candidates = []
+        for (value of Object.keys(resolve(state.curPath))) {
+            if (value.startsWith(last)) {
+                candidates.push(value)
+            }    
+        }
+
+        if (candidates.length === 1) {
+            completed = completeWord(candidates)
+            parsed[parsed.length - 1] = completed
+            inputValue.value = parsed.join(" ")
+        }
+        
+        inputValue.focus()
+        inputValue.setSelectionRange(inputValue.value.length, inputValue.value.length)
+        event.preventDefault()
+    }
+    
 });
 
 function handleEnter(commandText) {
@@ -157,4 +181,8 @@ function cat(args, state) {
 function clear() {
     outputSpace.innerHTML = ""
     return "";
+}
+
+function completeWord(candidates) {
+    return candidates[0]
 }
