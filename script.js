@@ -5,16 +5,22 @@ const outputSpace = document.querySelector(".output")
 
 const DIRECTORY = {
     "~": {
-        "ABOUTME.md": "about me placeholder",
+        "ABOUTME.md": "Lucas Yaskowich\n\nI’m a Computing and Mathematics student at Queen’s University, specializing in security. I build practical software across DevOps, computer vision, mobile development, and data analysis.\n\nCurrently: contributing to computer-vision work with Queen’s Aerospace Design Team and sports analytics with QSAO.",
         "platforms": {
-            "linkedIn": "link",
-            "gitHub": "link",
-            "other": ""
+            "linkedin.txt": "https://www.linkedin.com/in/lucas-yaskowich",
+            "github.txt": "https://github.com/LucasYaskowich",
+            "email.txt": "lyaskowich@gmail.com"
         },
         "resume": {
-            "workExperience.md": "workExp placeholder",
-            "skills.md": "skills placeholder",
-            "CLAUDE.md": "claude placeholder",
+            "education.md": "Queen’s University\nBachelor of Computing (Honours)\nDouble Major: Computing (Security specialization) and Mathematics\nExpected graduation: 2029",
+            "workExperience.md": "PokerLab — DevOps Intern | May 2026–August 2026\n\n• Implemented telemetry across web-application services and configured monitors and alerts.\n• Built and maintained Datadog dashboards for troubleshooting and performance monitoring.\n• Supported collaborative Git-based CI/CD workflows.",
+            "skills.md": "LANGUAGES\nPython, Go, JavaScript, TypeScript, HTML/CSS, SQL\n\nTOOLS\nDatadog, GitHub, GitLab, Jira, Slack, CI/CD\n\nFOCUS AREAS\nComputer vision, object detection, machine learning, data analysis, security\n\nOTHER\nLinux, macOS, Windows · Fluent English and French",
+            "activities.md": "Queen’s Aerospace Design Team — Computer Vision Sub-team | 2025–present\nObject detection, machine-learning workflows, and deployment.\n\nQueen’s Sports Analytics Organization — Football Analyst | 2025–present\nPython, data analysis, and machine learning on large datasets. Second place, 2026 Case Competition.\n\nNorth Vancouver Spring Flag Football League — Referee & Field General | 2022–2026\nManaged field operations and referee coordination. Referee of the Year, 2026."
+        },
+        "projects": {
+            "darts.md": "Darts Computer-Vision Scoring Prototype\nPython · OpenCV · YOLOv8\n\nDetects dartboard keypoints, corrects perspective using homography, and maps dart locations to standard scores. Includes standalone 501 logic: double-out rules, busts, turn management, and checkout hints.\n\nGitHub: https://github.com/LucasYaskowich/Darts",
+            "yourrecipe.md": "YourRecipe — Mobile Recipe Library Prototype\nReact Native · Expo · TypeScript · FastAPI · Supabase\n\nA recipe-library prototype with photo uploads, structured recipe storage, dietary profiles, and AI-assisted recipe adaptation.\n\nGitHub: https://github.com/LucasYaskowich/YourRecipe",
+            "site.md": "Personal Portfolio Website\nHTML · CSS · JavaScript\n\nA hand-coded portfolio that offers both this terminal emulator and a friendly browsing view."
         }
     }
 }
@@ -31,6 +37,10 @@ function resolve(path) {
 
 inputLine.textContent = "user@machine:" + pwd(state) + " $ "
 
+const welcomeMessage = document.createElement("p")
+welcomeMessage.textContent = "Welcome to Lucas Yaskowich’s portfolio terminal. Type 'help' to get started."
+outputSpace.appendChild(welcomeMessage)
+
 inputValue.addEventListener("keydown", (event) => {
     if (event.key === 'Enter') {
         const commandText = inputValue.value 
@@ -45,6 +55,7 @@ inputValue.addEventListener("keydown", (event) => {
         inputLine.textContent = "user@machine:" + pwd(state) + " $ "
         inputValue.value = ""
         inputValue.focus()
+        inputValue.scrollIntoView({ block: "end" })
     }
 
     if (event.key === 'ArrowUp') {
@@ -127,7 +138,7 @@ function handleEnter(commandText) {
 }
 
 function help() {
-    return "output of help command";
+    return "Available commands:\n  ls             list files and directories\n  cd <directory> move into a directory\n  cd ..          move up one directory\n  cd ~           return home\n  cat <file>     read a file\n  pwd            show current path\n  clear          clear the terminal\n\nTip: press Tab to autocomplete directory and file names.";
 }
 
 function cd(args, state) {
