@@ -43,13 +43,29 @@ outputSpace.appendChild(welcomeMessage)
 
 inputValue.addEventListener("keydown", (event) => {
     if (event.key === 'Enter') {
-        const commandText = inputValue.value 
+        const prompt = inputLine.textContent
+        const commandText = inputValue.value
+        const returned = handleEnter(commandText)
+
+        const promptSpan = document.createElement("span")
+        promptSpan.textContent = prompt
+        promptSpan.classList = "prompt"
+
+        const commandSpan = document.createElement("span")
+        commandSpan.textContent = commandText
+
+        const commandLine = document.createElement("p")
+        commandLine.appendChild(promptSpan)
+        commandLine.appendChild(commandSpan)
 
         const p = document.createElement("p")
-        p.textContent = inputLine.textContent + " " + commandText + "\n" + handleEnter(commandText)
-        
+        p.textContent = returned
+
         if (commandText !== "clear") {
-            outputSpace.appendChild(p)
+            outputSpace.appendChild(commandLine)
+            if (p !== "") {    
+                outputSpace.appendChild(p)
+            }
         }
         
         inputLine.textContent = "user@machine:" + pwd(state) + " $ "

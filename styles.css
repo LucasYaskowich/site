@@ -66,3 +66,7 @@ input[type="text"]:focus {
   border-color: black;
   outline: none;
 }
+
+.prompt {
+    color: rgb(227, 123, 13);
+}
