@@ -5,7 +5,7 @@ const outputSpace = document.querySelector(".output")
 
 const DIRECTORY = {
     "~": {
-        "ABOUTME.md": "I’m a Computing and Mathematics student (BCmpH) at Queen’s University, specializing in security. I build practical software across DevOps, computer vision, mobile development, and data analysis.\n\nCurrently: contributing to computer-vision work with Queen’s Aerospace Design Team and sports analytics with QSAO.",
+        "ABOUTME.md": "I’m a Computing and Mathematics student (BCmpH) at Queen’s University, specializing in security. I build practical software across DevOps, computer vision, and data analysis.\n\nCurrently: directing curriculum for Queen’s HPC Club and contributing computer-vision work to Queen’s Aerospace Design Team.",
         "platforms": {
             "linkedin.txt": "https://www.linkedin.com/in/lucas-yaskowich",
             "github.txt": "https://github.com/LucasYaskowich",
